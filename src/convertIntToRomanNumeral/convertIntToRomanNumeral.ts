@@ -43,7 +43,7 @@ function onesPlaceConverter(val: string) {
             return "III"
         }
         case (numVal === 4): {
-            return "VI"
+            return "IV"
         }
         case (numVal === 5): {
             return "V"
