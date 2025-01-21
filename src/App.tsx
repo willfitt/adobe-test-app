@@ -1,11 +1,61 @@
-import './App.css';
+import { Button, Form, NumberField } from "@adobe/react-spectrum";
+import "./App.css";
+import { useState } from "react";
+import { convertIntToRomanNumeral } from "./convertIntToRomanNumeral/convertIntToRomanNumeral";
 
 function App() {
+  const [numberInputVal, setNumberInputVal] = useState<number | undefined>();
+  const [romanNumeralVal, setRomanNumeralVal] = useState<
+    string[] | undefined
+  >();
+
+  // Boiler plate onSubmit code taken from Adobe React Spectrum docs
+  let onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Prevent default browser page refresh.
+    e.preventDefault();
+
+    // Get form data as an object.
+    let data = Object.fromEntries(new FormData(e.currentTarget));
+    const numberData: string = data.numberInput as string;
+    // Submit to your backend API...
+
+    const romanNumeral = convertIntToRomanNumeral(numberData);
+
+    setRomanNumeralVal(romanNumeral);
+    console.log(romanNumeral);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-          Edit <code>src/App.js</code> and save to reload.
-      </header>
+      {/* This app is small enough that I feel justified in keeping all the components in the
+        App.tsx file. If this task were to have more intricacy in components and logic, I 
+        definitely would have split components out as necessary into reusable components to 
+        keep everything better organized and readable.
+      */}
+      <header className="App-header">Roman numeral converter</header>
+      <div>
+        <Form
+          validationBehavior="native"
+          // validationErrors={{
+          //   numberInput: "Sorry, the input must be between 1-3999.",
+          // }} //work on this
+          maxWidth="size-3000"
+          onSubmit={onSubmit}
+        >
+          <NumberField
+            value={numberInputVal}
+            minValue={1}
+            maxValue={3999}
+            name="numberInput"
+            label="Enter a number"
+            onChange={setNumberInputVal}
+          />
+          <Button type="submit" variant="primary">
+            Convert to roman numeral
+          </Button>
+        </Form>
+        {romanNumeralVal && <div>Roman numeral: {romanNumeralVal}</div>}
+      </div>
     </div>
   );
 }
