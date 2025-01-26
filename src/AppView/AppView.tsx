@@ -1,6 +1,6 @@
 import { Button, Form, NumberField } from "@adobe/react-spectrum";
 import "./AppView.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { convertIntToRomanNumeral } from "../convertIntToRomanNumeral/convertIntToRomanNumeral";
 
 interface IAppViewProps {
@@ -27,6 +27,15 @@ function AppView(props: IAppViewProps) {
 
     setRomanNumeralVal(romanNumeral);
   };
+
+  const [message, setMessage] = useState('');
+  useEffect(() => {
+    // Make a request to your Express server
+    fetch("http://localhost:5000/api")
+      .then((response) => response.json())
+      .then((data) => setMessage(data.message))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
   return (
     /* This app is small enough that I feel justified in keeping all the components in the
