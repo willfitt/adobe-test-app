@@ -1,6 +1,5 @@
 export function convertIntToRomanNumeral(val: string) {
     const romanNumeralStringArray: string[] = [];
-
     const splitValString = val.split("");
 
     splitValString.slice().reverse().forEach((val, index) => {
@@ -25,8 +24,6 @@ export function convertIntToRomanNumeral(val: string) {
             romanNumeralStringArray.push(thousandsPlaceConverter(val))
         }
     })
-
-
     return romanNumeralStringArray.reverse().concat();
 }
 

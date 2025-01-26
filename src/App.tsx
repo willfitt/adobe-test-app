@@ -36,23 +36,25 @@ function App() {
       <div>
         <Form
           validationBehavior="native"
-          // validationErrors={{
-          //   numberInput: "Sorry, the input must be between 1-3999.",
-          // }} //work on this
           maxWidth="size-3000"
           onSubmit={onSubmit}
         >
           <NumberField
             value={numberInputVal}
-            minValue={1}
-            maxValue={3999}
             name="numberInput"
             label="Enter a number"
             onChange={setNumberInputVal}
+            validate={(value) =>
+              value < 1 || value > 3999
+                ? "Sorry, the input must be between 1-3,999."
+                : null
+            }
           />
-          <Button type="submit" variant="primary">
-            Convert to roman numeral
-          </Button>
+          <div className="Submit-button-container">
+            <Button type="submit" variant="primary">
+              Convert to roman numeral
+            </Button>
+          </div>
         </Form>
         {romanNumeralVal && <div>Roman numeral: {romanNumeralVal}</div>}
       </div>
