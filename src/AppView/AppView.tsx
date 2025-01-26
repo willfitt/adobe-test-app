@@ -1,7 +1,6 @@
 import { Button, Form, NumberField } from "@adobe/react-spectrum";
 import "./AppView.css";
-import { useEffect, useState } from "react";
-import { convertIntToRomanNumeral } from "../convertIntToRomanNumeral/convertIntToRomanNumeral";
+import { useState } from "react";
 
 interface IAppViewProps {
   isDarkMode: boolean;
@@ -18,24 +17,16 @@ function AppView(props: IAppViewProps) {
     // Prevent default browser page refresh.
     e.preventDefault();
 
-    // Get form data as an object.
     let data = Object.fromEntries(new FormData(e.currentTarget));
-    const numberData: string = data.numberInput as string;
+    const integer: Number = Number(data.numberInput);
+
     // Submit to your backend API...
-
-    const romanNumeral = convertIntToRomanNumeral(numberData);
-
-    setRomanNumeralVal(romanNumeral);
-  };
-
-  const [message, setMessage] = useState('');
-  useEffect(() => {
-    // Make a request to your Express server
-    fetch("http://localhost:5000/api")
+    fetch(`http://localhost:8080/romannumeral?query=${integer}`)
       .then((response) => response.json())
-      .then((data) => setMessage(data.message))
+      .then((data) => setRomanNumeralVal(data.output))
       .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+
+  };
 
   return (
     /* This app is small enough that I feel justified in keeping all the components in the
