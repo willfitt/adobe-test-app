@@ -12,7 +12,7 @@ function AppView(props: IAppViewProps) {
   const [romanNumeralVal, setRomanNumeralVal] = useState<
     string[] | undefined
   >();
-  // Boiler plate onSubmit code taken from Adobe React Spectrum docs
+  // Some boiler plate onSubmit code taken from Adobe React Spectrum docs
   let onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // Prevent default browser page refresh.
     e.preventDefault();
@@ -20,12 +20,11 @@ function AppView(props: IAppViewProps) {
     let data = Object.fromEntries(new FormData(e.currentTarget));
     const integer: Number = Number(data.numberInput);
 
-    // Submit to your backend API...
+    // Submit to backend API
     fetch(`http://localhost:8080/romannumeral?query=${integer}`)
       .then((response) => response.json())
       .then((data) => setRomanNumeralVal(data.output))
       .catch((error) => console.error("Error fetching data:", error));
-
   };
 
   return (
@@ -33,6 +32,9 @@ function AppView(props: IAppViewProps) {
         App.tsx file. If this task were to have more intricacy in components and logic, I 
         definitely would have split components out as necessary into reusable components to 
         keep everything better organized and readable.
+      */
+    /* Form validation was used to enforce values between 1-3999. Error handling for these values 
+      is therefore performed by the front end and not the back end. 
       */
     <div className="App">
       <header className="App-header">Roman numeral converter</header>

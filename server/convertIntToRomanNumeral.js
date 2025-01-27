@@ -2,9 +2,10 @@ function convertIntToRomanNumeral(int) {
   const stringInt = int.toString();
   const romanNumeralStringArray = [];
   const splitValString = stringInt.split("");
-
+  // The goal here is to create an array of characters that can be iterated over to generate the correct roman numerals
+  // We reverse the array so we can start at the ones place and move towards the thousands place if the base value is that large
   splitValString
-    .slice()
+    // .slice()
     .reverse()
     .forEach((val, index) => {
       if (index === 0) {
