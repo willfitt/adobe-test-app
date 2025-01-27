@@ -9,7 +9,7 @@ npm run server-start
 ```
 In a second terminal run
 ```
-`npm run start`
+npm run start
 ```
 
 ### Engineering and testing methodology
