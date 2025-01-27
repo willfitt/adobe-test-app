@@ -1,11 +1,17 @@
 ### How to build and run this project
 Clone the repository
 Run in your terminal or IDE `npm i`
-```
+
 To run the project:
-    -In the first terminal run `npm run server-start`
-    -In a second terminal run `npm run start`
+In the first terminal run
 ```
+npm run server-start
+```
+In a second terminal run
+```
+`npm run start`
+```
+
 ### Engineering and testing methodology
 The design and implementation of this app was quite straighforward. The requirements were clear and simple so knowing
 what was needed was apparent. Implementation followed by first creating the React front end so I could more easily 
