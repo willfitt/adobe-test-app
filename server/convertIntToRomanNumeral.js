@@ -25,6 +25,7 @@ function convertIntToRomanNumeral(int) {
   return formattedRomanNumeral;
 }
 
+// Roman numeral specification was found at https://en.wikipedia.org/wiki/Roman_numerals, see the Standard form in that document
 function onesPlaceConverter(val) {
   const numVal = Number(val);
   switch (true) {
